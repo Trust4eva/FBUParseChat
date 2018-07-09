@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Parse.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    ParseClientConfiguration *configuration = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        configuration.applicationId = @"parseChatID";
+        configuration.server = @"https://blooming-thicket-89345.herokuapp.com/parse";
+    }];
+    [Parse initializeWithConfiguration:configuration];
     return YES;
 }
 
@@ -46,6 +52,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 
 @end
